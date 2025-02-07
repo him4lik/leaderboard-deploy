@@ -1,0 +1,28 @@
+services:
+    leaderboard:
+        build:
+            context: ./leaderboard
+            dockerfile: Dockerfile.django
+        ports:
+            - "8001:8000"
+        volumes:
+            - ./leaderboard:/code
+        env_file: .env
+        deploy:
+            resources:
+                limits:
+                    memory: 3G
+
+    postgres:
+        build:
+            context: ./leaderboard
+            dockerfile: Dockerfile.postgres
+        ports:
+            - "9802:5432"
+        restart: always
+        volumes:
+          - ~/postgres-data:/var/lib/postgresql/data
+        deploy:
+          resources:
+            limits:
+              memory: 2G
