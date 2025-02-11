@@ -4,7 +4,7 @@ services:
             context: ./leaderboard
             dockerfile: Dockerfile.django
         ports:
-            - "8001:8000"
+            - "8000:8000"
         volumes:
             - ./leaderboard:/code
         env_file: .env
@@ -21,8 +21,43 @@ services:
             - "9802:5432"
         restart: always
         volumes:
-          - ~/postgres-data:/var/lib/postgresql/data
+            - ./dump_data:/data
         deploy:
           resources:
             limits:
               memory: 2G
+
+    redis:
+        build:
+            context: ./leaderboard
+            dockerfile: Dockerfile.redis
+        container_name: redis
+        ports:
+            - "6379:6379"
+        restart: always
+        volumes:
+            - ./redis_data:/data
+
+    beat:
+        build:
+            context: ./leaderboard
+            dockerfile: Dockerfile.beat
+        volumes:
+            - ./leaderboard:/code
+        env_file: .env
+        depends_on:
+            - redis
+            - leaderboard
+            - worker
+
+    
+    worker:
+        build:
+            context: ./leaderboard
+            dockerfile: Dockerfile.worker
+        volumes:
+            - ./leaderboard:/code
+        env_file: .env
+        restart: always
+        depends_on:
+            - redis
