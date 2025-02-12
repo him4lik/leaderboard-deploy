@@ -21,7 +21,7 @@ services:
             - "9802:5432"
         restart: always
         volumes:
-            - ./dump_data:/data
+            - ../dump_data:/data
         deploy:
           resources:
             limits:
