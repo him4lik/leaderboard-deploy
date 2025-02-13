@@ -67,6 +67,8 @@ git clone --recurse-submodules https://github.com/him4lik/leaderboard-deploy.git
 cd leaderboard_deploy
 dcrestart
 ```
+### 4. Test IT
+Go to this url - [https://localhost:8000/web/dashboard/](https://localhost:8000/web/dashboard/)
 
 ## Important Commands
 ```bash
