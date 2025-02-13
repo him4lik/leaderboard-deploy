@@ -78,3 +78,10 @@ dshell # open shell for leaderboard container
 
 ## Architecture
 
+###We used the following tech stack:
+1. Django - Handles incoming HTTP requests, serves static files and templates, communicates with the database for CRUD operations, triggers Celery tasks for asynchronous processing.
+2. Celery - Executes background tasks asynchronously, listens to the Redis message queue for new tasks.
+3. Postgres - Stores application data (e.g., user profiles, leaderboard scores)
+4. redis - Acts as the message broker for Celery, stores task queues and results.
+5. beat - Works with Celery to execute tasks at specified intervals
+![image](https://github.com/user-attachments/assets/a9050bf5-50d6-47dd-9f3b-b9c6d75b9dbe)
