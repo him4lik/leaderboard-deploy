@@ -49,7 +49,7 @@ sudo apt update && sudo apt install docker-ce docker-ce-cli containerd.io
 sudo usermod -aG docker $USER && newgrp docker
 ```
 
-###2. Add Aliases to .bash_aliases
+### 2. Add Aliases to .bash_aliases
 Add the following script to your .bash_aliases file for easier Docker management:
 
 ```bash
@@ -58,7 +58,7 @@ alias dshell='docker exec -ti leaderboard_deploy_leaderboard_1 /bin/bash'
 dclogs(){ dc logs --tail=100 --follow "$@" }
 dcrestart(){ dc stop "$@" && dc rm -f -v "$@" && dc up --build -d "$@" }
 ```
-###3. Start All Services
+### 3. Start All Services
 Run the following command to start all services:
 
 ```bash
