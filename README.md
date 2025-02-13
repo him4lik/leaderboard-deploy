@@ -63,6 +63,18 @@ Run the following command to start all services:
 
 ```bash
 source .bash_aliases
+git clone --recurse-submodules https://github.com/him4lik/leaderboard-deploy.git
 cd leaderboard_deploy
 dcrestart
 ```
+
+## Important Commands
+'''bash
+dcrestart <service-name> # leaderboard, redis, worker, postgres, beat
+dclogs <service-name> # leaderboard, redis, worker, postgres, beat
+dc up -d <service-name> --scale <service-name>=3 --no-recreate # to scale up containers for a service
+dshell # open shell for leaderboard container
+'''
+
+## Architecture
+
