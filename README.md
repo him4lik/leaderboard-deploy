@@ -53,7 +53,7 @@ sudo usermod -aG docker $USER && newgrp docker
 Add the following script to your .bash_aliases file for easier Docker management:
 
 ```bash
-alias alias dc='docker compose -f docker-compose.yml -f docker-compose.dev.yml --compatibility'
+alias dc='docker compose -f docker-compose.yml -f docker-compose.dev.yml --compatibility'
 alias dshell='docker exec -ti leaderboard_deploy_leaderboard_1 /bin/bash'
 dclogs(){
         dc logs --tail=100 --follow $@
