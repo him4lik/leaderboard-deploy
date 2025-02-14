@@ -53,10 +53,16 @@ sudo usermod -aG docker $USER && newgrp docker
 Add the following script to your .bash_aliases file for easier Docker management:
 
 ```bash
-alias dc='docker compose -f docker-compose.yml --compatibility'
+alias alias dc='docker compose -f docker-compose.yml -f docker-compose.dev.yml --compatibility'
 alias dshell='docker exec -ti leaderboard_deploy_leaderboard_1 /bin/bash'
-dclogs(){ dc logs --tail=100 --follow "$@" }
-dcrestart(){ dc stop "$@" && dc rm -f -v "$@" && dc up --build -d "$@" }
+dclogs(){
+        dc logs --tail=100 --follow $@
+}
+dcrestart(){
+        dc stop $@
+        dc rm -f -v $@
+        dc up --build -d $@
+}
 ```
 ### 3. Start All Services
 Run the following command to start all services:
