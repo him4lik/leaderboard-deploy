@@ -53,8 +53,8 @@ sudo usermod -aG docker $USER && newgrp docker
 Add the following script to your .bash_aliases file for easier Docker management:
 
 ```bash
-alias dc='docker compose -f docker-compose.yml -f docker-compose.dev.yml --compatibility'
-alias dshell='docker exec -ti leaderboard_deploy_leaderboard_1 /bin/bash'
+alias dc='docker compose -f docker-compose.yml --compatibility'
+alias dshell='docker exec -ti leaderboard-deploy_leaderboard_1 /bin/bash'
 dclogs(){
         dc logs --tail=100 --follow $@
 }
@@ -74,7 +74,7 @@ cd leaderboard_deploy
 dcrestart
 ```
 ### 4. Test IT
-Go to this url - [https://localhost:8000/web/dashboard/](https://localhost:8000/web/dashboard/)
+Go to this url - [http://localhost:8000/web/dashboard/](http://localhost:8000/web/dashboard/)
 
 ## Important Commands
 ```bash
