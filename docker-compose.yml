@@ -4,7 +4,7 @@ services:
             context: ./leaderboard
             dockerfile: Dockerfile.django
         ports:
-            - "8000:8000"
+            - "8001:8000"
         volumes:
             - ./leaderboard:/code
         env_file: .env
