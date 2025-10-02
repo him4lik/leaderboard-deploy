@@ -4,6 +4,8 @@ A robust game leaderboard system that allows you to manage contestants, games, a
 
 ---
 
+Watch this video for quick setup and demo -  [Quick Setup and Demo]()
+
 ## Features
 
 1. **Contestant Management**:
@@ -39,48 +41,28 @@ A robust game leaderboard system that allows you to manage contestants, games, a
 ## Local Deployment Steps
 
 ### 1. Install Docker
-Run the following commands to install Docker on Ubuntu:
+Install Docker engine.
 
+### 2. Use .bash_aliases file for docker commands aliases
 ```bash
-sudo apt update && sudo apt install apt-transport-https ca-certificates curl software-properties-common
-curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
-echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
-sudo apt update && sudo apt install docker-ce docker-ce-cli containerd.io
-sudo usermod -aG docker $USER && newgrp docker
-```
-
-### 2. Add Aliases to .bash_aliases
-Add the following script to your .bash_aliases file for easier Docker management:
-
-```bash
-alias dc='docker compose -f docker-compose.yml --compatibility'
-alias dshell='docker exec -ti leaderboard-deploy_leaderboard_1 /bin/bash'
-dclogs(){
-        dc logs --tail=100 --follow $@
-}
-dcrestart(){
-        dc stop $@
-        dc rm -f -v $@
-        dc up --build -d $@
-}
+cd leaderboard-deploy
+source .bash_aliases
 ```
 ### 3. Start All Services
-Run the following command to start all services:
+Go to the project directory and run the following command to start all services:
 
 ```bash
-source .bash_aliases
-git clone --recurse-submodules https://github.com/him4lik/leaderboard-deploy.git
-cd leaderboard_deploy
 dcrestart
 ```
 ### 4. Test IT
-Go to this url - [http://localhost:8000/web/dashboard/](http://localhost:8000/web/dashboard/)
+Go to this url - [http://localhost:8001/web/dashboard/](http://localhost:8001/web/dashboard/)
 
 ## Important Commands
+Following aliases are added to .bash_aliases file for convenience
 ```bash
-dcrestart <service-name> # leaderboard, redis, worker, postgres, beat
-dclogs <service-name> # leaderboard, redis, worker, postgres, beat
-dc up -d <service-name> --scale <service-name>=3 --no-recreate # to scale up containers for a service
+dcrestart <service-name> # restart container for specific service - leaderboard, redis, worker, postgres, beat
+dclogs <service-name> # see logs for specific service - leaderboard, redis, worker, postgres, beat
+dc up -d <service-name> --scale <service-name>=<num of containers> --no-recreate # to scale up containers for a service
 dshell # open shell for leaderboard container
 ```
 
@@ -92,5 +74,7 @@ dshell # open shell for leaderboard container
 3. Postgres - Stores application data (e.g., user profiles, leaderboard scores).
 4. redis - Acts as the message broker for Celery, stores task queues and results.
 5. beat - Works with Celery to execute tasks at specified intervals.
+
+6. django-simple-history - To track every change in data done by users.
    
 ![image](https://github.com/user-attachments/assets/a9050bf5-50d6-47dd-9f3b-b9c6d75b9dbe)
