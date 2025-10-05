@@ -4,7 +4,7 @@ A robust game leaderboard system that allows you to manage contestants, games, a
 
 ---
 
-Watch this video for quick setup and demo -  [Quick Setup and Demo]()
+Watch this video for quick setup and demo -  [Quick Setup and Demo](https://drive.google.com/file/d/1BGzso6TM7BP4vU0aCVpn36Yv0Iu6KBfM/view?usp=sharing)
 
 ## Features
 
